@@ -1,7 +1,7 @@
 <?php
 class database{
     static function conectar(){
-        $server = "STEPHEN-PC\SQLEXPRESS";
+        $server = "localhost";
         $database = "pasarelapagosUNICESMAG";
         $username = "unicesmag";
         $password = "12345678";

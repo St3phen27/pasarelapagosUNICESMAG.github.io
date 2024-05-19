@@ -64,16 +64,41 @@ else{
 </head>
 
 <body>
+
+    
+    <!--Bootstrap-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
+
+    <script>
+        function addProduct(id, token){
+            let url = 'class/cart.php'
+            let formData = new FormData();
+            formData.append('id', id)
+            formData.append('token', token)
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors'
+            }). then(response => response.json())
+            .then(data=>{
+                if(data.ok){
+                    let element = document.getElementById("num_cart");
+                    element.innerHTML = data.numero
+                }
+            })
+        }
+    </script>
 
     <!--NAVBAR-->
 
     <header>
     <div class="navbar navbar-exapand-lg navbar-dark bg-dark">
         <div class="container">
-        <a href="#" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <strong>Tienda CESMAG</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -87,7 +112,11 @@ else{
                     <a href="#" calss="nav-link active">Catalogo</a>
                 </li>
             </ul>
-            <a href="cart.php" class="btn btn-primary">Carrito</a>
+            <a href="cart.php" class="btn btn-primary">
+                Carrito<span id="num_cart" class="badge bg-secondary">
+                    <?php echo $num_cart; ?>
+                </span>
+            </a>
         </div> 
         </div>
     </div>
@@ -111,7 +140,7 @@ else{
                         <button class="btn btn-primary" type="button">
                             Comprar ahora
                         </button>
-                        <button class="btn btn-outline-primary" type="button">
+                        <button class="btn btn-outline-primary" type="button" onclick="addProduct(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">
                             Agregar al carrito
                         </button>
                     </div>

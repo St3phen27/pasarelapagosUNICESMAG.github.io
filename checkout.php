@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <script src="https://www.paypal.com/sdk/js?client-id=AS53jKQEm9zvX8Mcp698FS-gFIsZ4NDBnss1kF0QyKq57vJ2FTkrg5977MWCZiJrHrBM9frl46N13Es5&currency=MXN">
+    <script src="https://www.paypal.com/sdk/js?client-id=AS53jKQEm9zvX8Mcp698FS-gFIsZ4NDBnss1kF0QyKq57vJ2FTkrg5977MWCZiJrHrBM9frl46N13Es5&currency=COP">
     </script>
 </head>
 <body>
@@ -39,7 +39,6 @@
             }
         }).render('#paypal-button-container');
     </script>
-    
     
 
     <form action="https://checkout.wompi.co/p/" method="GET">

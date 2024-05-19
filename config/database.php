@@ -1,7 +1,7 @@
 <?php
 class database{
     static function conectar(){
-        $serverName = "STEPHEN-PC\SQLEXPRESS";
+        $serverName = "localhost";
         $connectionInfo = array( "Database"=>"pasarelapagosUNICESMAG", "UID"=>"unicesmag", "PWD"=>"12345678");
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
         
