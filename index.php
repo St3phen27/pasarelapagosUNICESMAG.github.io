@@ -1,4 +1,5 @@
 <?php
+require 'config/config.php';
 require 'config/databasePDO.php';
 $db = new Database();
 $conn = $db->conectar();
@@ -25,6 +26,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
 
+    <!--NAVBAR-->
+
     <header>
     <div class="navbar navbar-exapand-lg navbar-dark bg-dark">
         <div class="container">
@@ -48,33 +51,42 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     </div>
     </header>
 
-<main>
-    <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <?php
-        foreach($resultado as $row) {
-        ?>
-        <div class="col">
-          <div class="card shadow-sm">
-            
+        <!--PRODUCTS-->
 
-            <img src="images/products/product_1.jpg"></img>
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $row['name']; ?></h5>
-              <p class="card-text">$ <?php echo $row['price']; ?> COP</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <a href="" class="btn btn-primary">Detalles</a>
+    <main>
+            <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php
+                foreach($resultado as $row) {
+                ?>
+                <div class="col">
+                <div class="card shadow-sm">
+                    <?php
+                        $id = $row['id_product'];
+                        $image = "images/products/product_" . $id . ".jpg";
+                        if(!file_exists($image)){
+                            $image = "images/no-photo.jpg";
+                        }
+                    ?>
+                    <img src="<?php echo $image; ?>"></img>
+                    <div class="card-body">
+                    <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                    <p class="card-text">$ <?php echo number_format($row['price'], 0, '.', ','); ?> COP</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="details.php?id=<?php echo $row['id_product']; ?>&token=<?php echo
+                            hash_hmac('sha1', $row['id_product'], KEY_TOKEN); ?>" class="btn 
+                            btn-primary">Detalles</a>
+                        </div>
+                        <a href="" class="btn btn-success">Agregar</a>
+                    </div>
+                    </div>
                 </div>
-                <a href="" class="btn btn-success">Agregar</a>
-              </div>
+                </div>
+                <?php } ?>
             </div>
-          </div>
         </div>
-        <?php } ?>
-    </div>
-</div>
-</main>
+    </main>
 
 
 </body>
