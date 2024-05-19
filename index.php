@@ -20,11 +20,19 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: 10
+                            value: 100
                         }
                     }]
                 });
             },
+
+            onApprove: function(data, actions){
+                actions.order.capture().then(function(detalles){
+                    console.log(detalles);
+                    window.location.href="order-information.html"
+                });
+            },
+
             onCancel: function(data){
                 alert("Pago cancelado");
                 console.log(data);
