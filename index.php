@@ -1,3 +1,12 @@
+<?php
+require 'config/databasePDO.php';
+$db = new Database();
+$conn = $db->conectar();
+$sql = $conn->prepare("SELECT id_product, name, price FROM product");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +17,9 @@
     rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
     crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
+
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
@@ -40,24 +51,31 @@
 <main>
     <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <?php
+        foreach($resultado as $row) {
+        ?>
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            
+
+            <img src="images/products/product_1.jpg"></img>
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title"><?php echo $row['name']; ?></h5>
+              <p class="card-text">$ <?php echo $row['price']; ?> COP</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <a href="" class="btn btn-primary">Detalles</a>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <a href="" class="btn btn-success">Agregar</a>
               </div>
             </div>
           </div>
         </div>
+        <?php } ?>
     </div>
-    </div>
+</div>
 </main>
+
 
 </body>
 </html>
