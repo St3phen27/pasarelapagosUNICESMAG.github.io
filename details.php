@@ -128,7 +128,7 @@ else{
         <div class="container">
             <div class="row">
                 <div class="col-md-6 order-md-1">
-                    <img src="<?php echo $imageRoute; ?>">
+                    <img src="<?php echo $imageRoute; ?>" width="500" height="500">
                 </div>
                 <div class="col-md-6 order-md-2">
                     <h1><?php echo $name; ?></h1>
