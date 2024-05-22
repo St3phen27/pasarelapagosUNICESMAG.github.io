@@ -53,6 +53,8 @@ session_destroy();
         }
     </script>
 
+    <script src="js/checkout.js"></script>
+
     <!--NAVBAR-->
 
     <header>
@@ -110,7 +112,7 @@ session_destroy();
             </div>
         </div>
     </main>
-
+    
 
 </body>
 </html>

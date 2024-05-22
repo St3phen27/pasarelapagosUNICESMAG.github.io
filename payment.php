@@ -61,7 +61,7 @@ else{
 
     <main>
         <div class="container">
-
+        
         <div class="row">
             <div class="col-6">
                 <h4>Detalles de pago</h4>
@@ -106,12 +106,24 @@ else{
                                         <p class="h3" id="total"><?php echo CURRENCYREGION.number_format($total,0,'.',',').' '.CURRENCY; ?></p>
                                     </td>
                                 </tr>
+                                <form action="https://checkout.wompi.co/p/" method="GET">
+                                <input type="hidden" name="public-key" value="pub_test_501zz4iE1TnIknS0Ob5DEs22JFFVaxYe" />
+                                <input type="hidden" name="currency" value="COP" />
+                                <input id="totalPay" type="hidden" name="amount-in-cents" value="<?php echo $total*100; ?>"/>
+                                <input id="reference" type="hidden" name="reference" value="<?php echo hash_hmac('sha1', $total, KEY_TOKEN); ?>" />
+                                <input type="hidden" name="redirect-url" value="http://localhost/pasarelapagosUNICESMAG.github.io/"/>
+                                <button class="btn btn-primary btn-lg" type="submit" data-dismiss="modal">Comprar con WOMPI</button>
+                                </form>
                             </tbody>
                             <?php } ?>
                         </table>
+
                     </div>
                 </div>
             </div>
+            
+                    
+
         </div>
     </main>
 
@@ -166,5 +178,6 @@ else{
             }).render('#paypal-button-container');
         </script>
     
+
 </body>
 </html>
