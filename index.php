@@ -7,8 +7,6 @@ $sql = $conn->prepare("SELECT id_product, name, price FROM product");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-session_destroy();
-
 ?>
 
 <!DOCTYPE html>

@@ -111,7 +111,7 @@ else{
                                 <input type="hidden" name="currency" value="COP" />
                                 <input id="totalPay" type="hidden" name="amount-in-cents" value="<?php echo $total*100; ?>"/>
                                 <input id="reference" type="hidden" name="reference" value="<?php echo hash_hmac('sha1', $total, KEY_TOKEN); ?>" />
-                                <input type="hidden" name="redirect-url" value="http://localhost/pasarelapagosUNICESMAG.github.io/"/>
+                                <input type="hidden" name="redirect-url" value="http://localhost/pasarelapagosUNICESMAG.github.io/checkout_status.php"/>
                                 <button class="btn btn-primary btn-lg" type="submit" data-dismiss="modal">Comprar con WOMPI</button>
                                 </form>
                             </tbody>
@@ -158,7 +158,7 @@ else{
                     actions.order.capture().then(function(detalles){
                         console.log(detalles);
                         let url = 'class/captura.php'
-                        //window.location.href="#"
+                        window.location.href="checkout_status.php"
                         return fetch(url, {
                             method: 'post',
                             headers: {
